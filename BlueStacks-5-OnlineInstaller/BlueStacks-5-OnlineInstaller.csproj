@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{BDA850A6-E9BF-4BDB-B041-D4EECF9BC6D4}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>BlueStacks_5_OnlineInstaller</RootNamespace>
-    <AssemblyName>BlueStacks-5-OnlineInstaller</AssemblyName>
+    <RootNamespace>BlueStacksInstaller_HieuGLLite</RootNamespace>
+    <AssemblyName>BlueStacksInstaller_HieuGLLite</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -101,6 +101,12 @@
     <Compile Include="frm_Main.Designer.cs">
       <DependentUpon>frm_Main.cs</DependentUpon>
     </Compile>
+    <Compile Include="frm_Main_BS4.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_Main_BS4.Designer.cs">
+      <DependentUpon>frm_Main_BS4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frm_Lang.resx">
@@ -108,6 +114,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frm_Main.resx">
       <DependentUpon>frm_Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_Main_BS4.resx">
+      <DependentUpon>frm_Main_BS4.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -117,6 +126,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="HieuGLLite.pfx" />
     <None Include="Properties\Settings.settings">
@@ -134,6 +144,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="ProductLogo.ico" />
+    <None Include="Resources\BlueStacks.ico" />
+    <None Include="Resources\475037745_1145609947169948_1808085165724307370_n.jpg" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

@@ -5,30 +5,30 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
-using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BlueStacks_5_OnlineInstaller
+namespace BlueStacksInstaller_HieuGLLite
 {
-    public partial class frm_Main : Form
+    public partial class frm_Main_BS4 : Form
     {
-        public frm_Main()
+        public frm_Main_BS4()
         {
             InitializeComponent();
         }
+
         ProcessStartInfo processStartInfo = new ProcessStartInfo();
         Process process = new Process();
         public string lang = string.Empty;
 
-        private void StartInstall(string android,string Ver)
+        private void StartInstall(string Ver)
         {
 
             try
             {
 
-                processStartInfo.FileName = System.IO.Path.Combine(Application.StartupPath,"BlueStacksInstaller_" + android + "_" + Ver + ".exe");
+                processStartInfo.FileName = System.IO.Path.Combine(Application.StartupPath, "BlueStacksInstaller" + Ver + ".exe");
                 processStartInfo.Arguments = string.Empty;
                 processStartInfo.UseShellExecute = true;
                 processStartInfo.Verb = "runas";
@@ -41,7 +41,11 @@ namespace BlueStacks_5_OnlineInstaller
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"{ex.Message}");
+                DialogResult dialogResult = MessageBox.Show($"{ex.Message}");
+                if (dialogResult == DialogResult.OK)
+                {
+                    Application.Exit();
+                }
             }
         }
 
@@ -51,7 +55,7 @@ namespace BlueStacks_5_OnlineInstaller
             {
 
                 processStartInfo.FileName = System.IO.Path.Combine(Application.StartupPath, "BSTCleaner_native", "BSTCleaner.exe");
-                processStartInfo.Arguments = "-oem nxt";
+                processStartInfo.Arguments = "-oem bgp";
                 processStartInfo.UseShellExecute = true;
                 processStartInfo.Verb = "runas";
                 processStartInfo.WorkingDirectory = System.IO.Path.Combine(Application.StartupPath, "BSTCleaner_native");
@@ -62,7 +66,11 @@ namespace BlueStacks_5_OnlineInstaller
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"{ex.Message}");
+                DialogResult dialogResult =  MessageBox.Show($"{ex.Message}");
+                if (dialogResult == DialogResult.OK)
+                {
+                    Application.Exit();
+                }
             }
         }
 
@@ -89,29 +97,17 @@ namespace BlueStacks_5_OnlineInstaller
             {
                 this.Hide();
                 StartUninstall();
-                string androidVersion = string.Empty;
                 string Ver = string.Empty;
-                if (cbo_Android.Text == "Android 7 (32bit)")
-                {
-                    androidVersion = "Nougat32";
-                } else if (cbo_Android.Text == "Android 9 (64bit)")
-                {
-                    androidVersion = "Pie64";
-                } else if (cbo_Android.Text == "Android 11 (64bit)")
-                {
-                    androidVersion = "Rvc64";
-                }
-
                 if (rdo_VerGG.Checked)
                 {
-                    Ver = "GG";
+                    Ver = "_GG";
                 }
                 else if (rdo_VerNoGG.Checked)
                 {
-                    Ver = "NoGG";
+                    Ver = string.Empty;
                 }
-                StartInstall(androidVersion, Ver);
-                this.Close();
+                StartInstall(Ver);
+                Application.Exit();
             }
             else if (dialogResult == DialogResult.No)
             {
@@ -119,23 +115,14 @@ namespace BlueStacks_5_OnlineInstaller
             }
         }
 
-        private void grp_SelectVer_Enter(object sender, EventArgs e)
-        {
 
-        }
-
-        private void frm_Main_Load(object sender, EventArgs e)
+        private void frm_Main_BS4_Load(object sender, EventArgs e)
         {
-            cbo_Android.Items.Add("Android 7 (32bit)");
-            cbo_Android.Items.Add("Android 9 (64bit)");
-            cbo_Android.Items.Add("Android 11 (64bit)");
-            cbo_Android.SelectedIndex = 0;
             if (lang == "vi")
             {
                 this.Text = "BlueStacks Installer - Hiếu GL Lite";
-                lbl_EmuName.Text = "Giả lập: BlueStacks 5.22.51";
-                lbl_Android.Text = "Phiên bản Android:";
                 grp_SelectVer.Text = "Dịch vụ Google";
+                lbl_emulator.Text = "Giả lập: BlueStacks 4.240.20";
                 rdo_VerGG.Text = "Có";
                 rdo_VerNoGG.Text = "Không";
                 btn_Start.Text = "Bắt đầu cài đặt";
@@ -143,46 +130,23 @@ namespace BlueStacks_5_OnlineInstaller
             else if (lang == "en")
             {
                 this.Text = "BlueStacks Installer - Hieu GL Lite";
-                lbl_EmuName.Text = "Emulator: BlueStacks 5.22.51";
-                lbl_Android.Text = "Android version:";
                 grp_SelectVer.Text = "Google Services";
+                lbl_emulator.Text = "Emulator: BlueStacks 4.240.20";
                 rdo_VerGG.Text = "Yes";
                 rdo_VerNoGG.Text = "No";
-                btn_Start.Text = "Start installation";
+                btn_Start.Text = "Start install";
+
             }
         }
-      
-    
 
-        private void frm_Main_FormClosed(object sender, FormClosedEventArgs e)
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void frm_Main_BS4_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
-        }
-
-        private void rdo_VerNoGG_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cbo_Android.Text=="Android 11 (64bit)" && rdo_VerNoGG.Checked)
-            {
-                switch(lang)
-                {
-                    case "vi":
-                        MessageBox.Show("Phiên bản Android 11 (64bit) không hỗ trợ dịch vụ Google, vui lòng chọn phiên bản khác!", "Cảnh báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        rdo_VerGG.Checked = true;
-                        break;
-                    case "en":
-                        MessageBox.Show("Android 11 (64bit) does not support Google Services, please select another version!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        rdo_VerGG.Checked = true;
-                        break;
-                }
-            }
-        }
-
-        private void cbo_Android_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cbo_Android.Text == "Android 11 (64bit)" && rdo_VerNoGG.Checked)
-            {
-                rdo_VerGG.Checked = true;
-            }
         }
     }
 }

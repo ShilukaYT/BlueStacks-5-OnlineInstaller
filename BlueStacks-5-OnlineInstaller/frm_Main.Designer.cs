@@ -29,30 +29,20 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_Main));
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lbl_Title = new System.Windows.Forms.Label();
             this.lbl_EmuName = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.grp_SelectVer = new System.Windows.Forms.GroupBox();
             this.rdo_VerGG = new System.Windows.Forms.RadioButton();
             this.rdo_VerNoGG = new System.Windows.Forms.RadioButton();
             this.btn_Start = new System.Windows.Forms.Button();
-            this.cbo_Android = new System.Windows.Forms.ComboBox();
             this.lbl_Android = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.cbo_Android = new System.Windows.Forms.ComboBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.grp_SelectVer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Location = new System.Drawing.Point(295, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(71, 63);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // lbl_Title
             // 
@@ -73,16 +63,6 @@
             this.lbl_EmuName.Size = new System.Drawing.Size(178, 16);
             this.lbl_EmuName.TabIndex = 2;
             this.lbl_EmuName.Text = "Emulator: BlueStacks 5.22.51";
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox2.Location = new System.Drawing.Point(295, 81);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(71, 63);
-            this.pictureBox2.TabIndex = 4;
-            this.pictureBox2.TabStop = false;
             // 
             // grp_SelectVer
             // 
@@ -117,6 +97,7 @@
             this.rdo_VerNoGG.TabStop = true;
             this.rdo_VerNoGG.Text = "No";
             this.rdo_VerNoGG.UseVisualStyleBackColor = true;
+            this.rdo_VerNoGG.CheckedChanged += new System.EventHandler(this.rdo_VerNoGG_CheckedChanged);
             // 
             // btn_Start
             // 
@@ -129,15 +110,6 @@
             this.btn_Start.UseVisualStyleBackColor = true;
             this.btn_Start.Click += new System.EventHandler(this.btn_Start_Click);
             // 
-            // cbo_Android
-            // 
-            this.cbo_Android.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbo_Android.FormattingEnabled = true;
-            this.cbo_Android.Location = new System.Drawing.Point(136, 60);
-            this.cbo_Android.Name = "cbo_Android";
-            this.cbo_Android.Size = new System.Drawing.Size(143, 21);
-            this.cbo_Android.TabIndex = 7;
-            // 
             // lbl_Android
             // 
             this.lbl_Android.AutoSize = true;
@@ -147,6 +119,36 @@
             this.lbl_Android.Size = new System.Drawing.Size(104, 16);
             this.lbl_Android.TabIndex = 8;
             this.lbl_Android.Text = "Android version:";
+            // 
+            // cbo_Android
+            // 
+            this.cbo_Android.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbo_Android.FormattingEnabled = true;
+            this.cbo_Android.Location = new System.Drawing.Point(136, 60);
+            this.cbo_Android.Name = "cbo_Android";
+            this.cbo_Android.Size = new System.Drawing.Size(143, 21);
+            this.cbo_Android.TabIndex = 7;
+            this.cbo_Android.SelectedIndexChanged += new System.EventHandler(this.cbo_Android_SelectedIndexChanged);
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox2.Location = new System.Drawing.Point(295, 81);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(71, 63);
+            this.pictureBox2.TabIndex = 4;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.Location = new System.Drawing.Point(295, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(71, 63);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // frm_Main
             // 
@@ -171,10 +173,10 @@
             this.Text = "BlueStacks Installer - Hieu GL Lite";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frm_Main_FormClosed);
             this.Load += new System.EventHandler(this.frm_Main_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.grp_SelectVer.ResumeLayout(false);
             this.grp_SelectVer.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -190,8 +192,8 @@
         private System.Windows.Forms.RadioButton rdo_VerGG;
         private System.Windows.Forms.RadioButton rdo_VerNoGG;
         private System.Windows.Forms.Button btn_Start;
-        private System.Windows.Forms.ComboBox cbo_Android;
         private System.Windows.Forms.Label lbl_Android;
+        private System.Windows.Forms.ComboBox cbo_Android;
     }
 }
 
